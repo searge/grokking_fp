@@ -8,3 +8,7 @@ wheels/
 
 # Virtual environments
 .venv
+
+# Scala-generated files
+.metals
+.scala-build
