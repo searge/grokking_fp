@@ -1,6 +1,6 @@
 // Imperative and declarative programming
 // Imperative programming: write code that does what you want
-// Declarative programming: write code that tells you what to do
+// Declarative programming: write code that describes what you want
 
 object Ch01Intro:
 

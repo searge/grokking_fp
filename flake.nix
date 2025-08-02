@@ -21,7 +21,7 @@
             # Scala environment
             scala_3
             sbt
-            jdk11
+            jdk17
 
             # Optional: metals for IDE support
             metals
@@ -29,7 +29,7 @@
 
           shellHook = ''
             echo "🎯 Grokking FP Development Environment"
-            echo "Python: $(python --version)"
+            echo "Python: $(python3 --version 2>&1)"
             echo "Scala: $(scala -version 2>&1)"
             echo "SBT: $(sbt --version)"
             echo ""
