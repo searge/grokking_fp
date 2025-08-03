@@ -42,9 +42,19 @@ class ShoppingCart:
 
         Returns
         -------
-            A list of all items currently in the cart.
+            A copy of the list of all items currently in the cart.
         """
         return self.items.copy()
+
+    def remove_item(self, item: str) -> None:
+        """Remove an item from the shopping cart.
+
+        Args:
+            item: The name of the item to remove from the cart.
+        """
+        self.items.remove(item)
+        if item == "Book":
+            self.book_added = False
 
 
 if __name__ == "__main__":
@@ -57,6 +67,9 @@ if __name__ == "__main__":
     # But we are using copy of the list, so it will not be removed
     # from the original list
     cart.get_items().remove("Book")
+    # Test removing "Book" from the cart
+    cart.remove_item("Book")
+    # We will get a problem, when the list get more Books
 
     print("Items in cart:", cart.get_items())
     print("Discount percentage:", cart.get_discount_percentage())
