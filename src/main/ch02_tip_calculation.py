@@ -10,7 +10,7 @@ class TipCalculator:
 
     def __init__(self) -> None:
         self.names: list[str] = []
-        self.tip_percentage: int = 0
+        self.tip_percentage: int = 10
 
     def add_person(self, name: str) -> None:
         """Add a person to the group and update tip percentage.
@@ -34,7 +34,7 @@ class TipCalculator:
         list[str]
             The list of names currently in the group.
         """
-        return self.names
+        return self.names.copy()
 
     def get_tip_percentage(self) -> int:
         """Get the current tip percentage based on group size.
