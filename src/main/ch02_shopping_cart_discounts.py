@@ -45,3 +45,13 @@ class ShoppingCart:
             A list of all items currently in the cart.
         """
         return self.items.copy()
+
+
+if __name__ == "__main__":
+    cart = ShoppingCart()
+    cart.add_item("Shirt")
+    cart.add_item("Book")
+    cart.add_item("Shoes")
+
+    print("Items in cart:", cart.get_items())
+    print("Discount percentage:", cart.get_discount_percentage())
