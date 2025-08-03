@@ -122,8 +122,7 @@ class ShoppingCartStatic:
         """
         if "Book" in items:
             return 5
-        else:
-            return 0
+        return 0
 
 
 if __name__ == "__main__":
