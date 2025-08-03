@@ -1,84 +1,76 @@
-# Grokking Functional Programming - Python Exercises
+# Grokking Functional Programming
 
-This repository contains my personal solutions and notes for the exercises in the book ["Grokking Functional Programming"](https://www.manning.com/books/grokking-functional-programming "null") by Michał Płachta. The goal is to practice functional programming concepts in a modern Python (3.13+) environment.
+Personal solutions and notes for exercises from ["Grokking Functional Programming"](https://www.manning.com/books/grokking-functional-programming) by Michał Płachta.
+Each exercise is implemented in both **Python** and **Scala** to compare functional programming approaches across languages.
 
 [The official code examples](https://github.com/miciek/grokkingfp-examples "null") for the book.
 
-## Setup
+## Quick Start
 
-This project uses `uv` for fast dependency and environment management.
-
-1. **Create a virtual environment:**
-
-    ```bash
-    uv venv
-    ```
-
-2. **Activate the environment:**
-
-    ```bash
-    # On macOS/Linux
-    source .venv/bin/activate
-    ```
-
-3. **Install all dependencies:**
-
-    ```bash
-    uv pip install -e ".[dev]"
-    ```
-
-## How to Run an Exercise
-
-All exercises are located in the `src/` directory. To run a specific script, use the `python` command from the root of the project.
-
-For example, to run an exercise from Chapter 2:
+### Python + Scala Environment (Recommended)
 
 ```bash
-python src/grokking_fp/ch02_pure_functions/01_what_is_purity.py
+# Enter Nix shell with both languages
+nix develop
+
+# Run exercises
+task run:scala -- Ch01Intro
+task run:py -- ch01_intro
 ```
 
-## Code Quality & Debugging
+### Python Only
 
-We use `ruff` for linting/formatting and `mypy` for type checking.
+```bash
+# Setup Python environment
+task setup
+source .venv/bin/activate
 
-- **Check your code:**
-
-    ```bash
-    # Format code
-    ruff format .
-
-    # Lint and fix issues
-    ruff check . --fix
-
-    # Check types
-    mypy src
-    ```
-
-- **Debugging:** The simplest way to debug a script is to place a breakpoint directly in the code. Just add `breakpoint()` where you want the debugger to start.
-
-    ```python
-    def my_function(data):
-        # ... some logic ...
-        breakpoint() # The script will pause here
-        # ... rest of the logic ...
-    ```
-
-    Then run the script as usual.
+# Run Python exercises
+task run:py -- ch01_intro
+```
 
 ## Project Structure
 
-The code is organized by book chapters to make it easy to find specific exercises.
+```bash
+src/
+├── main/                         # Python exercises
+│   └── ch01_intro.py
+└── scala/                        # Scala exercises
+    └── Ch01Intro.scala
+```
+
+## Available Commands
 
 ```bash
-.
-├── docs/
-│   └── CODING_GUIDELINES.md
-├── pyproject.toml
-├── src
-│  ├── main
-│  │  ├── __init__.py
-│  │  └── ch01_intro.py
-│  └── scala
-│     └── Ch01Intro.scala
-└── README.md
+# Run `task` with no arguments to list available tasks
+task
+
+# Environment
+task setup                        # Setup development environment
+
+# Run exercises
+task run:py -- ch01_intro         # Run Python exercise
+task run:scala -- Ch01Intro       # Run Scala exercise
+task list                         # List all exercises
+
+# Code quality
+task check:py                     # Format and lint Python code
+task clean:artifacts              # Clean build artifacts
+task clean:nix                    # Clean Nix garbage (free up disk space)
 ```
+
+## Key Technologies
+
+- **Python 3.13** with `returns` library for functional patterns
+- **Scala 3** for native functional programming
+- **Nix** for reproducible development environment
+- **Task** for simple command runner
+
+## Learning Approach
+
+Both implementations follow the same exercises but showcase different approaches:
+
+- **Python**: Functional patterns using `returns` library (Maybe, Result, IO)
+- **Scala**: Native functional programming with immutable data structures
+
+Each exercise includes both imperative and declarative solutions to demonstrate the evolution toward functional thinking.

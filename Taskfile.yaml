@@ -32,12 +32,12 @@ tasks:
         fi
 
   # Python tasks
-  python:run:
+  run:py:
     desc: "Run Python exercise (usage: task python:run -- ch01_intro)"
     cmds:
       - python {{.PYTHON_SRC}}/{{.CLI_ARGS}}.py
 
-  python:check:
+  check:py:
     desc: "Check Python code quality"
     cmds:
       - ruff format .
@@ -45,13 +45,13 @@ tasks:
       - mypy src
 
   # Scala tasks
-  scala:run:
+  run:scala:
     desc: "Run Scala exercise (usage: task scala:run -- Ch01Intro)"
     cmds:
       - scala {{.SCALA_SRC}}/{{.CLI_ARGS}}.scala
 
   # Utility tasks
-  clean:
+  clean:artifacts:
     desc: "Clean build artifacts"
     cmds:
       - rm -rf target/ .scala-build/ .metals/ *.egg-info/
