@@ -71,6 +71,7 @@ tasks:
 
   list:
     desc: "List all available exercises"
+    silent: true
     cmds:
       - echo "📚 Available exercises:"
       - echo ""
