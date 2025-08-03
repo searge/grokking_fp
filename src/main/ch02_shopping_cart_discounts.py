@@ -53,5 +53,10 @@ if __name__ == "__main__":
     cart.add_item("Book")
     cart.add_item("Shoes")
 
+    # It supposed to remove "Book" from the cart
+    # But we are using copy of the list, so it will not be removed
+    # from the original list
+    cart.get_items().remove("Book")
+
     print("Items in cart:", cart.get_items())
     print("Discount percentage:", cart.get_discount_percentage())
