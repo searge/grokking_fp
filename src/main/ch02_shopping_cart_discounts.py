@@ -97,6 +97,14 @@ class ShoppingCartRecalculating:
             return 5
         return 0
 
+    def remove_item(self, item: str) -> None:
+        """Remove an item from the shopping cart.
+
+        Args:
+            item: The name of the item to remove from the cart.
+        """
+        self.items.remove(item)
+
 
 if __name__ == "__main__":
     cart = ShoppingCart()
@@ -114,3 +122,29 @@ if __name__ == "__main__":
 
     print("Items in cart:", cart.get_items())
     print("Discount percentage:", cart.get_discount_percentage())
+
+    # Test new implementation of ShoppingCart
+    cart2 = ShoppingCartRecalculating()
+    cart2.add_item("Book")
+    cart2.add_item("Book") # adding a second book
+    try:
+        assert cart2.get_discount_percentage() == 5
+        print("Assertion passed")
+    except AssertionError:
+        print("Assertion failed")
+    cart2.add_item("Shoes")
+    cart2.remove_item("Book")
+
+    try:
+        assert cart2.get_items() == ["Book", "Shoes"]
+        print("Assertion passed")
+    except AssertionError:
+        print("Assertion failed")
+    try:
+        assert cart2.get_discount_percentage() == 5
+        print("Assertion passed")
+    except AssertionError:
+        print("Assertion failed")
+
+    print("Items in cart:", cart2.get_items())
+    print("Discount percentage:", cart2.get_discount_percentage())
