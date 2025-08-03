@@ -54,7 +54,7 @@ tasks:
   clean:artifacts:
     desc: "Clean build artifacts"
     cmds:
-      - rm -rf target/ .scala-build/ .metals/ *.egg-info/
+      - rm -rf target/ .scala-build/ .metals/ *.egg-info/ .ruff_cache/
       - find . -type d \( -name "__pycache__" ! -name ".venv" \) -exec rm -rf {} \;
       - find . -name "*.pyc" -delete
       - find . -name "*.class" -delete
