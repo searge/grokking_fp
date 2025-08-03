@@ -20,8 +20,9 @@
 
             # Scala environment
             scala_3
+            scalafmt
             sbt
-            jdk17
+            jdk21
 
             # Optional: metals for IDE support
             metals
