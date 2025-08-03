@@ -74,10 +74,11 @@ The code is organized by book chapters to make it easy to find specific exercise
 ├── docs/
 │   └── CODING_GUIDELINES.md
 ├── pyproject.toml
-└── src/
-    └── grokking_fp/
-        ├── ch01_introduction/
-        │   └── 01_first_example.py
-        └── ch02_pure_functions/
-            └── 01_what_is_purity.py
+├── src
+│  ├── main
+│  │  ├── __init__.py
+│  │  └── ch01_intro.py
+│  └── scala
+│     └── Ch01Intro.scala
+└── README.md
 ```
