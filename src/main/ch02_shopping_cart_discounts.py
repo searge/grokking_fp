@@ -44,4 +44,4 @@ class ShoppingCart:
         -------
             A list of all items currently in the cart.
         """
-        return self.items
+        return self.items.copy()
