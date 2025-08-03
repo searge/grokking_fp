@@ -5,7 +5,7 @@ discounts based on the presence of specific items (books).
 """
 
 
-class ShoppingCart:
+class ShoppingCartBad:
     """A shopping cart that tracks items and provides discount functionality.
 
     The cart applies a 5% discount when a book is added to the cart.
@@ -60,7 +60,7 @@ class ShoppingCart:
 class ShoppingCartRecalculating:
     """A shopping cart that recalculates discount based on current items.
 
-    Unlike ShoppingCart, this implementation calculates the discount by
+    Unlike ShoppingCartBad, this implementation calculates the discount by
     checking if a book is currently in the cart, rather than tracking
     whether a book was ever added.
     """
@@ -106,8 +106,28 @@ class ShoppingCartRecalculating:
         self.items.remove(item)
 
 
+class ShoppingCartStatic:
+    """Shopping cart with static methods - functional approach."""
+
+    @staticmethod
+    def get_discount_percentage(items: list[str]) -> int:
+        """Calculate discount percentage based on items list.
+
+        Args:
+            items: List of items in the shopping cart.
+
+        Returns
+        -------
+            5 if the list contains a book, 0 otherwise.
+        """
+        if "Book" in items:
+            return 5
+        else:
+            return 0
+
+
 if __name__ == "__main__":
-    cart = ShoppingCart()
+    cart = ShoppingCartBad()
     cart.add_item("Shirt")
     cart.add_item("Book")
     cart.add_item("Shoes")
