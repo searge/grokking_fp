@@ -74,8 +74,10 @@ class TipCalculatorStatic:
 
 
 if __name__ == "__main__":
-    tip_calculator = TipCalculator()
     visitors: list[str] = ["John", "Jane", "Joe", "Jill", "Jack", "Joel"]
+
+    # Imperative style
+    tip_calculator = TipCalculator()
     for visitor in visitors:
         tip_calculator.add_person(visitor)
     print(tip_calculator.get_names())
