@@ -16,10 +16,25 @@ class TipCalculator:
     def get_tip_percentage(self) -> int:
         return self.tip_percentage
 
+
+class TipCalculatorStatic:
+    @staticmethod
+    def get_tip_percentage(names: list[str]) -> int:
+        if len(names) > 5:
+            return 20
+        return 10
+
+
 if __name__ == "__main__":
     tip_calculator = TipCalculator()
     visitors: list[str] = ["John", "Jane", "Joe", "Jill", "Jack", "Joel"]
     for visitor in visitors:
         tip_calculator.add_person(visitor)
     print(tip_calculator.get_names())
+    print("Imperative style: Instance method")
     print(tip_calculator.get_tip_percentage())
+
+    # Functional style
+    print("Functional style: Static method")
+    tip_calculator2 = TipCalculatorStatic()
+    print(tip_calculator2.get_tip_percentage(visitors))
