@@ -142,7 +142,7 @@ if __name__ == "__main__":
     print("Items in cart:", cart.get_items())
     print("Discount percentage:", cart.get_discount_percentage())
 
-    # Test new implementation of ShoppingCart
+    # SOLUTION 2: RECALCULATING
     cart2 = ShoppingCartRecalculating()
     cart2.add_item("Book")
     cart2.add_item("Book") # adding a second book
@@ -167,3 +167,34 @@ if __name__ == "__main__":
 
     print("Items in cart:", cart2.get_items())
     print("Discount percentage:", cart2.get_discount_percentage())
+
+    # SOLUTION 3: JUST A FUNCTION
+    just_apple: list[str] = ["Apple"]
+    print(ShoppingCartStatic.get_discount_percentage(just_apple))
+    apple_and_book: list[str] = ["Apple", "Book"]
+    print(ShoppingCartStatic.get_discount_percentage(apple_and_book))
+    try:
+        assert ShoppingCartStatic.get_discount_percentage(just_apple) == 0
+        assert ShoppingCartStatic.get_discount_percentage(apple_and_book) == 5
+        print("Assertion passed")
+    except AssertionError:
+        print("Assertion failed")
+    # Imperative usage
+    items: list[str] = []
+    try:
+        assert ShoppingCartStatic.get_discount_percentage(items) == 0
+        print("Assertion of empty list passed")
+    except AssertionError:
+        print("Assertion of empty list failed")
+    items.append("Apple")
+    try:
+        assert ShoppingCartStatic.get_discount_percentage(items) == 0
+        print("Assertion of list with one item passed")
+    except AssertionError:
+        print("Assertion of list with one item failed")
+    items.append("Book")
+    try:
+        assert ShoppingCartStatic.get_discount_percentage(items) == 5
+        print("Assertion of list with two items with book passed")
+    except AssertionError:
+        print("Assertion of list with two items failed")
