@@ -33,7 +33,7 @@ output-format = "grouped"
 
 [tool.ruff.lint]
 select = ["E", "W", "F", "I", "N", "D", "UP", "S", "B", "A", "C4", "SIM", "RUF"]
-ignore = ["D203", "D213"]
+ignore = ["D203", "D213", "S101"]
 
 [tool.ruff.format]
 skip-magic-trailing-comma = false
