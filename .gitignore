@@ -12,3 +12,5 @@ wheels/
 # Scala-generated files
 .metals
 .scala-build
+.bsp
+target
