@@ -57,6 +57,47 @@ class ShoppingCart:
             self.book_added = False
 
 
+class ShoppingCartRecalculating:
+    """A shopping cart that recalculates discount based on current items.
+
+    Unlike ShoppingCart, this implementation calculates the discount by
+    checking if a book is currently in the cart, rather than tracking
+    whether a book was ever added.
+    """
+
+    def __init__(self) -> None:
+        """Initialize an empty shopping cart."""
+        self.items: list[str] = []
+
+    def add_item(self, item: str) -> None:
+        """Add an item to the shopping cart.
+
+        Args:
+            item: The name of the item to add to the cart.
+        """
+        self.items.append(item)
+
+    def get_items(self) -> list[str]:
+        """Get all items in the shopping cart.
+
+        Returns
+        -------
+            A copy of the list of all items currently in the cart.
+        """
+        return self.items.copy()
+
+    def get_discount_percentage(self) -> int:
+        """Get the discount percentage for the current cart.
+
+        Returns
+        -------
+            5 if a book is currently in the cart, 0 otherwise.
+        """
+        if "Book" in self.items:
+            return 5
+        return 0
+
+
 if __name__ == "__main__":
     cart = ShoppingCart()
     cart.add_item("Shirt")
