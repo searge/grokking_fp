@@ -1,0 +1,85 @@
+version: '3'
+
+vars:
+  PYTHON_SRC: src/main
+  SCALA_SRC: src/scala
+
+tasks:
+  default:
+    desc: "Show available tasks"
+    aliases:
+      - l
+      - a
+    cmds:
+      - task --list-all
+    silent: true
+
+  # Development environment
+  setup:
+    desc: "Setup development environment"
+    cmds:
+      - |
+        if [ -n "$NIX_SHELL" ]; then
+          echo "🔵 Nix environment detected"
+          echo "✅ Python $(python --version) ready"
+          echo "✅ Scala $(scala --version | head -1) ready"
+        else
+          echo "🐍 Setting up local Python environment"
+          uv venv
+          uv pip install -e ".[dev]"
+          echo "✅ Python environment ready"
+          echo "ℹ️  For Scala: nix develop"
+        fi
+
+  # Python tasks
+  python:run:
+    desc: "Run Python exercise (usage: task python:run -- ch01_intro)"
+    cmds:
+      - python {{.PYTHON_SRC}}/{{.CLI_ARGS}}.py
+
+  python:check:
+    desc: "Check Python code quality"
+    cmds:
+      - ruff format .
+      - ruff check . --fix
+      - mypy src
+
+  # Scala tasks
+  scala:run:
+    desc: "Run Scala exercise (usage: task scala:run -- Ch01Intro)"
+    cmds:
+      - scala {{.SCALA_SRC}}/{{.CLI_ARGS}}.scala
+
+  # Utility tasks
+  clean:
+    desc: "Clean build artifacts"
+    cmds:
+      - >
+        rm -rf target/ .scala-build/ .metals *.egg-info/
+          __pycache__/ .mypy_cache/  *.pyc
+      - find . -name "*.class" -delete
+      - echo "🧹 Cleaned build artifacts"
+
+  clean:nix:
+    desc: "Clean Nix garbage (free up disk space)"
+    cmds:
+      - echo "🗑️  Running Nix garbage collection..."
+      - nix-collect-garbage --delete-older-than 7d
+      - echo "📊 Current /nix/store size:"
+      - du -sh /nix/store
+      - echo "✅ Nix cleanup complete"
+
+  list:
+    desc: "List all available exercises"
+    cmds:
+      - echo "📚 Available exercises:"
+      - echo ""
+      - echo "Python:"
+      - >
+        find {{.PYTHON_SRC}} -name "*.py" |
+          sed 's|{{.PYTHON_SRC}}/||' | sed 's|\.py||' | sort
+      - echo ""
+      - echo "Scala:"
+      - >
+        find {{.SCALA_SRC}} -name "*.scala" |
+          sed 's|{{.SCALA_SRC}}/||' | sed 's|\.scala||' | sort
