@@ -16,6 +16,8 @@ wheels/
 .bsp
 target
 project/**/metals.sbt
+*.jar
 
 # Ai
 .claude
+.mcp.json
