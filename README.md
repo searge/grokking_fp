@@ -1,21 +1,22 @@
 # Grokking Functional Programming
 
 Personal solutions and notes for exercises from ["Grokking Functional Programming"](https://www.manning.com/books/grokking-functional-programming) by Michał Płachta.
-Each exercise is implemented in both **Python** and **Scala** to compare functional programming approaches across languages.
+Each exercise is implemented in **Python**, **Scala**, and selected **Clojure** examples to compare functional programming approaches across languages.
 
 [The official code examples](https://github.com/miciek/grokkingfp-examples "null") for the book.
 
 ## Quick Start
 
-### Python + Scala Environment (Recommended)
+### Python + Scala + Clojure Environment (Recommended)
 
 ```bash
-# Enter Nix shell with both languages
+# Enter Nix shell with all languages
 nix develop
 
 # Run exercises
 task run:scala -- Ch01Intro
 task run:py -- ch01_intro
+task run:clj -- ch01_intro
 ```
 
 ### Python Only
@@ -35,6 +36,8 @@ task run:py -- ch01_intro
 src/
 ├── main/                         # Python exercises
 │   └── ch01_intro.py
+├── other/                        # Clojure exercises
+│   └── ch01_intro.clj
 └── scala/                        # Scala exercises
     └── Ch01Intro.scala
 ```
@@ -51,6 +54,7 @@ task setup                        # Setup development environment
 # Run exercises
 task run:py -- ch01_intro         # Run Python exercise
 task run:scala -- Ch01Intro       # Run Scala exercise
+task run:clj -- ch01_intro        # Run Clojure exercise
 task list                         # List all exercises
 
 # Code quality
@@ -63,14 +67,16 @@ task clean:nix                    # Clean Nix garbage (free up disk space)
 
 - **Python 3.13** with `returns` library for functional patterns
 - **Scala 3** for native functional programming
+- **Clojure** for Lisp-style functional programming on the JVM
 - **Nix** for reproducible development environment
 - **Task** for simple command runner
 
 ## Learning Approach
 
-Both implementations follow the same exercises but showcase different approaches:
+Implementations follow the same exercises but showcase different approaches:
 
 - **Python**: Functional patterns using `returns` library (Maybe, Result, IO)
 - **Scala**: Native functional programming with immutable data structures
+- **Clojure**: Data-first functional style with simple sequence transformations
 
 Each exercise includes both imperative and declarative solutions to demonstrate the evolution toward functional thinking.

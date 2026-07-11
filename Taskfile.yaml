@@ -3,6 +3,7 @@ version: '3'
 vars:
   PYTHON_SRC: src/main
   SCALA_SRC: src/scala
+  CLOJURE_SRC: src/other
 
 tasks:
   default:
@@ -23,12 +24,13 @@ tasks:
           echo "🔵 Nix environment detected"
           echo "✅ Python $(python --version) ready"
           echo "✅ Scala $(scala --version | head -1) ready"
+          echo "✅ Clojure $(clojure -Sdescribe | grep ':version' | awk '{print $2}' | tr -d '\"') ready"
         else
           echo "🐍 Setting up local Python environment"
           uv venv
           uv pip install -e ".[dev]"
           echo "✅ Python environment ready"
-          echo "ℹ️  For Scala: nix develop"
+          echo "ℹ️  For Scala and Clojure: nix develop"
         fi
 
   # Python tasks
@@ -49,6 +51,12 @@ tasks:
     desc: "Run Scala exercise (usage: task scala:run -- Ch01Intro)"
     cmds:
       - scala {{.SCALA_SRC}}/{{.CLI_ARGS}}.scala
+
+  # Clojure tasks
+  run:clj:
+    desc: "Run Clojure exercise (usage: task run:clj -- ch01_intro)"
+    cmds:
+      - clojure -M {{.CLOJURE_SRC}}/{{.CLI_ARGS}}.clj
 
   # Utility tasks
   clean:artifacts:
@@ -84,3 +92,8 @@ tasks:
       - >
         find {{.SCALA_SRC}} -name "*.scala" |
           sed 's|{{.SCALA_SRC}}/||' | sed 's|\.scala||' | sort
+      - echo ""
+      - echo "Clojure:"
+      - >
+        find {{.CLOJURE_SRC}} -name "*.clj" |
+          sed 's|{{.CLOJURE_SRC}}/||' | sed 's|\.clj||' | sort
