@@ -53,8 +53,10 @@ task setup                        # Setup development environment
 
 # Run exercises
 task run:py -- ch01_intro         # Run Python exercise
-task run:scala -- Ch01Intro       # Run Scala exercise
-task run:clj -- ch01_intro        # Run Clojure exercise
+task run:scala -- Ch01Intro       # Run Scala exercise with scala-cli cache
+task run:scala:script -- Ch01Intro # Run Scala exercise with stock scala runner
+task run:clj -- ch01_intro        # Run Clojure exercise with Babashka
+task run:clj:jvm -- ch01_intro    # Run Clojure exercise with JVM Clojure CLI
 task list                         # List all exercises
 
 # Code quality
@@ -67,7 +69,9 @@ task clean:nix                    # Clean Nix garbage (free up disk space)
 
 - **Python 3.13** with `returns` library for functional patterns
 - **Scala 3** for native functional programming
+- **Scala CLI** for cached Scala script runs
 - **Clojure** for Lisp-style functional programming on the JVM
+- **Babashka** for fast Clojure script runs
 - **Nix** for reproducible development environment
 - **Task** for simple command runner
 

@@ -20,11 +20,13 @@ tasks:
     desc: "Setup development environment"
     cmds:
       - |
-        if [ -n "$NIX_SHELL" ]; then
+        if [ -n "$NIX_SHELL" ] || [ -n "$IN_NIX_SHELL" ]; then
           echo "🔵 Nix environment detected"
           echo "✅ Python $(python --version) ready"
-          echo "✅ Scala $(scala --version | head -1) ready"
+          echo "✅ Scala $(scala -version 2>&1 | head -1) ready"
+          echo "✅ Scala CLI $(scala-cli version --offline | head -1) ready"
           echo "✅ Clojure $(clojure -Sdescribe | grep ':version' | awk '{print $2}' | tr -d '\"') ready"
+          echo "✅ Babashka $(bb --version) ready"
         else
           echo "🐍 Setting up local Python environment"
           uv venv
@@ -48,13 +50,23 @@ tasks:
 
   # Scala tasks
   run:scala:
-    desc: "Run Scala exercise (usage: task scala:run -- Ch01Intro)"
+    desc: "Run Scala exercise with scala-cli cache (usage: task run:scala -- Ch01Intro)"
+    cmds:
+      - scala-cli run {{.SCALA_SRC}}/{{.CLI_ARGS}}.scala
+
+  run:scala:script:
+    desc: "Run Scala exercise with the stock scala script runner"
     cmds:
       - scala {{.SCALA_SRC}}/{{.CLI_ARGS}}.scala
 
   # Clojure tasks
   run:clj:
-    desc: "Run Clojure exercise (usage: task run:clj -- ch01_intro)"
+    desc: "Run Clojure exercise with Babashka (usage: task run:clj -- ch01_intro)"
+    cmds:
+      - bb {{.CLOJURE_SRC}}/{{.CLI_ARGS}}.clj
+
+  run:clj:jvm:
+    desc: "Run Clojure exercise with the JVM Clojure CLI"
     cmds:
       - clojure -M {{.CLOJURE_SRC}}/{{.CLI_ARGS}}.clj
 
