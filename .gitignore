@@ -18,6 +18,13 @@ target
 project/**/metals.sbt
 *.jar
 
+# Clojure-generated files
+*.class
+*.jar
+*.clj-kondo
+*.clj-kondo-cache
+.lsp
+
 # Ai
 .claude
 .mcp.json
